@@ -1,0 +1,36 @@
+{
+  "name": "rayans-world-bot",
+  "version": "1.0.0",
+  "description": "The bot for rayans world",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeiRayan/Bot.git"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "discord-api-types": "^0.37.38",
+    "discord-hybrid-sharding": "^1.7.5",
+    "discord.js": "^14.9.0",
+    "dotenv": "^16.0.3",
+    "mongoose": "^7.0.3",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^3.3.1",
+    "openai": "^3.2.1",
+    "pm2": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.3",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
+  },
+  "author": "Joniii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeiRayan/Bot/issues"
+  },
+  "homepage": "https://github.com/CodeiRayan/Bot#readme"
+}
