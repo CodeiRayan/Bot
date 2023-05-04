@@ -28,7 +28,7 @@ manager.extend(
 
 // some events
 manager.on('clusterCreate', cluster => managerLogger.info(`Launched Cluster ${cluster.id}`));
-manager.on('debug', async (...args) => {
+manager.on('debug', async (...args: string[]) => {
     try {
         managerLogger.debug(args.shift()!, ...args)
     } catch (e) {

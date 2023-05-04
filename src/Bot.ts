@@ -4,7 +4,6 @@ import fs from "fs";
 import Logger from "./utils/Logger";
 require("./functions/handlers/AntiCrash");
 import { Client, Collection, GatewayIntentBits, Partials } from "discord.js";
-import { loadChannelsCache } from "./utils/chatBotUtils";
 config();
 
 (async () => {
@@ -70,7 +69,4 @@ config();
     mongoose.set("strictQuery", true);
     mongoose.connect(process.env.MONGO_URI!).catch();
   })();
-
-  // Loading every AI Talk channel into the cache 
-  await loadChannelsCache(client);
 })();
