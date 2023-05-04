@@ -11,7 +11,10 @@ import economy from "../schemas/economy";
  * @param bank    The amount that should be added on create to the bank bal
  * @returns       The created database entry object or if it failed a boolean
  */
-export async function create(userID: string, guildID: string, client: Client, balance: number = 0, bank: number = 0): Promise<boolean | object> {
+export async function create(userID: string, guildID: string, client: Client, balance: number = 1, bank: number = 1): Promise<boolean | object> {
+    // Checking if something is less then 0 from balance and bank
+    if (balance <= 0 || bank <= 0) return false;
+    
     // Check if the user exists in the db or not
     let check = economy.findOne({ userID, guildID });
 
@@ -21,8 +24,8 @@ export async function create(userID: string, guildID: string, client: Client, ba
             let check = await economy.create({
                 userID: userID,
                 guildID: guildID,
-                bal: 1000 + balance,
-                bank: 0 + bank,
+                bal: 999 + balance,
+                bank: 99 + bank,
             });
 
             // And now return that shit
@@ -50,6 +53,9 @@ export async function create(userID: string, guildID: string, client: Client, ba
  * @returns            A boolean that indicates if it was successfull or not
  */
 export async function updateBalance(userID: string, guildID: string, client: Client, balance: number): Promise<boolean> {
+    // Returning if the balance is less then 0
+    if (balance <= 0) return false;
+
     // Checking if the user exists or not and update the coins :D
     let check: object | boolean | undefined = economy.findOneAndUpdate(
         { userID, guildID },
@@ -61,6 +67,28 @@ export async function updateBalance(userID: string, guildID: string, client: Cli
         check = await create(userID, guildID, client, balance);
 
         // If the create function returns false, then we will return here false again
+        if (!check) return false;
+    };
+
+    return true;
+}
+
+
+export async function updateBank(userID: string, guildID: string, client: Client, bank: number): Promise<boolean> {
+    // Returning if the bank is less then 0
+    if (bank <= 0) return false;
+
+    // Checking if the user exiss or not and update the coins :D
+    let check: object | boolean | undefined = economy.findOneAndUpdate(
+        { userID, guildID },
+        { $inc: { bank: bank } }
+    );
+
+    if (!check) {
+        // Creating a new entry for the user using the create function that is above ^^
+        check = await create(userID, guildID, client, 0, bank);
+
+        // If the create function reuturns false, then we will reutn here false again
         if (!check) return false;
     };
 
