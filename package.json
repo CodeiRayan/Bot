@@ -4,7 +4,9 @@
   "description": "The bot for rayans world",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "rimraf ./dist && tsc && node ./dist/index.js"
   },
   "repository": {
     "type": "git",

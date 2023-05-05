@@ -71,14 +71,22 @@ export async function updateBalance(userID: string, guildID: string, client: Cli
     };
 
     return true;
-}
+};
 
-
+/**
+ * This function adds to the users Bank account
+ * 
+ * @param userID       The user's ID
+ * @param guildID      The guild's ID
+ * @param client       The client object / snowflake
+ * @param bank         The amount to add on the bank
+ * @returns            True or false
+ */
 export async function updateBank(userID: string, guildID: string, client: Client, bank: number): Promise<boolean> {
     // Returning if the bank is less then 0
     if (bank <= 0) return false;
 
-    // Checking if the user exiss or not and update the coins :D
+    // Checking if the user exists or not and update the coins :D
     let check: object | boolean | undefined = economy.findOneAndUpdate(
         { userID, guildID },
         { $inc: { bank: bank } }
@@ -86,11 +94,41 @@ export async function updateBank(userID: string, guildID: string, client: Client
 
     if (!check) {
         // Creating a new entry for the user using the create function that is above ^^
-        check = await create(userID, guildID, client, 0, bank);
+        check = await create(userID, guildID, client, 1, bank);
 
-        // If the create function reuturns false, then we will reutn here false again
+        // If the create function returns false, then we will return here false again
         if (!check) return false;
     };
 
     return true;
-}
+};
+
+/**
+ * This function handles to remove Balance from a user
+ * 
+ * @param userID       The user's ID
+ * @param guildID      The guild's ID
+ * @param client       The client object / snowflake
+ * @param balance      The balance to remove
+ * @returns            True or false
+ */
+export async function updateBalanceMinus(userID: string, guildID: string, client: Client, balance: number): Promise<boolean> {
+    // Returning if the balance is less then 1
+    if (balance <= 1) return false;
+
+    // Checking if the user exists or not and update the coins :D
+    let check: object | boolean | undefined = economy.findOneAndUpdate(
+        { userID, guildID },
+        { $inc: { bal: -balance } }
+    );
+
+    if (!check) {
+        // Creating a new entry for the user using the create function that is above ^^
+        check = await create(userID, guildID, client, 1);
+
+        // If the create function returns false, then we will return here false again
+        if (!check) return false;
+    };
+
+    return true;
+};
