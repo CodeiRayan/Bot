@@ -132,3 +132,17 @@ export async function updateBalanceMinus(userID: string, guildID: string, client
 
     return true;
 };
+
+/**
+ * This function checks if a string contains any letters
+ * 
+ * @param str   The string to test for
+ * @returns     Returns true or false
+ */
+export function checkForLetters(str: string): boolean {
+    // Setting up the regexp
+    const re = /^[0-9]+$/;
+
+    // Testing
+    return re.test(str);
+};
