@@ -8,7 +8,7 @@ config();
 
 (async () => {
   // setting the intents
-  const client: any = new Client({
+  const client: Client = new Client({
     intents: [
       GatewayIntentBits.Guilds,
       GatewayIntentBits.GuildMembers,
@@ -39,7 +39,7 @@ config();
   });
 
   // Initializing the client with an empty array and a new collection
-  client.prefix = process.env.PREFIX; // Prefix for the bot
+  client.prefix = process.env.PREFIX || "+"; // Prefix for the bot
   client.commands = new Collection();
   client.cooldowns = new Collection();
   client.commandArray = [];
