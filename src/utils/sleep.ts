@@ -4,7 +4,7 @@
  * @param {Number} seconds  The number of seconds to wait for
  * @returns {Promise}       How long to sleep for
  */
-export async function sleep(seconds: number): Promise<any> {
+export async function sleep(seconds: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, seconds * 1000);
   });
