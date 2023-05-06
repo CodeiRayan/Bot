@@ -2,9 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\commands",
+    "\\src\\commands\\economy",
+    "\\src\\events",
+    "\\src\\events\\client",
+    "\\src\\functions",
+    "\\src\\functions\\handlers",
     "\\src\\schemas",
-    "\\src\\utils"
+    "\\src\\utils",
+    "\\src\\utils\\managers"
   ],
-  "SelectedNode": "\\src\\utils\\ecoFuncs.ts",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
